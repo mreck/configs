@@ -90,9 +90,13 @@ export EDITOR=vim
 alias ls="ls --color=auto --group-directories-first"
 alias l="ls -lah"
 alias l1="ls -1"
+alias lt='ls -laht'
+alias ltr='ls -lahtr'
 
 alias cd..="cd .."
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
 alias .....="cd ../../../.."
+
+alias t='tmux has && tmux attach || tmux new'
