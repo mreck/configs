@@ -85,6 +85,10 @@ if ! shopt -oq posix; then
   fi
 fi
 
+if [ -x "$(which zsh)"]; then
+    eval "$(fzf --bash)"
+fi
+
 export EDITOR=vim
 
 alias ls="ls --color=auto --group-directories-first"
