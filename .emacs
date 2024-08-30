@@ -55,3 +55,6 @@
 (load-theme 'deeper-blue t)
 
 (global-set-key [remap list-buffers] 'ibuffer) ; nicer buffer switching with C-x C-b
+
+(ido-mode 1)
+(setq ido-enable-flex-matching t)
