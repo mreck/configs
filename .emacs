@@ -53,3 +53,5 @@
 (load custom-file 'noerror 'nomessage)
 
 (load-theme 'deeper-blue t)
+
+(global-set-key [remap list-buffers] 'ibuffer) ; nicer buffer switching with C-x C-b
