@@ -82,7 +82,7 @@ if ! shopt -oq posix; then
   fi
 fi
 
-if [ -x "$(which zsh)"]; then
+if [ which -s fzf ]; then
     eval "$(fzf --bash)"
 fi
 
