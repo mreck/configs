@@ -58,3 +58,11 @@
 
 (ido-mode 1)
 (setq ido-enable-flex-matching t)
+
+(use-package org
+  :ensure t
+  :hook
+  (org-mode . org-indent-mode))
+
+(use-package magit
+  :ensure t)
