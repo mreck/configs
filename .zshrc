@@ -13,7 +13,7 @@ bindkey "^[[F" end-of-line
 bindkey "^P" history-search-backward
 bindkey "^N" history-search-forward
 
-if [ -x "$(which zsh)"]; then
+if [ which -s fzf ]; then
     source <(fzf --zsh)
 fi
 
