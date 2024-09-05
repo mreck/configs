@@ -62,7 +62,9 @@
 (use-package org
   :ensure t
   :hook
-  (org-mode . org-indent-mode))
+  (org-mode . org-indent-mode)
+  :bind (:map org-mode-map
+	            ("C-c t" . org-show-todo-tree)))
 
 (use-package magit
   :ensure t)
