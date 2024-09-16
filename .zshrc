@@ -1,3 +1,10 @@
+if [ -d "$HOME/.oh-my-zsh" ]; then
+    export ZSH="$HOME/.oh-my-zsh"
+    ZSH_THEME="robbyrussell"
+    plugins=()
+    source $ZSH/oh-my-zsh.sh
+fi
+
 autoload -U colors && colors
 autoload -Uz compinit && compinit
 
@@ -8,6 +15,12 @@ setopt EXTENDED_HISTORY
 export SAVEHIST=100000
 export HISTFILE=~/.zsh_history
 
+export EDITOR=vim
+
+PROMPT="%B%F{green}%n%f %F{magenta}@%f %F{white}%m%f%b "
+PROMPT+="%B%F{magenta}:%f %{$fg[cyan]%}%~%b "
+PROMPT+="%(?:%{$fg_bold[green]%}> :%{$fg_bold[red]%}> )%{$reset_color%}"
+
 bindkey "^[[H" beginning-of-line
 bindkey "^[[F" end-of-line
 bindkey "^P" history-search-backward
@@ -17,7 +30,13 @@ if [ which -s fzf ]; then
     source <(fzf --zsh)
 fi
 
-export EDITOR=vim
+if [ which -s zoxide ]; then
+    eval "$(zoxide init zsh)"
+fi
+
+if [ "$(uname)" = "Darwin ]; then
+    alias code="open -a 'Visual Studio Code'"
+fi
 
 alias ls="ls --color=auto --group-directories-first"
 alias l="ls -lah"
@@ -42,7 +61,6 @@ alias gap="git add -p"
 
 alias gd="git diff"
 alias gds="git diff --staged"
-
 alias grs="git restore --staged"
 
 alias gc="git commit"
