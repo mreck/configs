@@ -34,15 +34,33 @@ if [ which -s zoxide ]; then
     eval "$(zoxide init zsh)"
 fi
 
-if [ "$(uname)" = "Darwin ]; then
+if [ -f ~/.fzf.zsh ]; then
+	source ~/.fzf.zsh
+elif [ -x "$(which fzf)" ]; then
+	source <(fzf --zsh)
+fi
+
+if [ -x "$(which zoxide)" ]; then
+	eval "$(zoxide init zsh)"
+fi
+
+if [ "$(uname)" = "Darwin" ]; then
     alias code="open -a 'Visual Studio Code'"
 fi
 
 alias ls="ls --color=auto --group-directories-first"
-alias l="ls -lah"
-alias l1="ls -1"
-alias lt='ls -laht'
-alias ltr='ls -lahtr'
+
+if [ -x "$(which eza)" ];then
+	alias eza="eza --group-directories-first --icons=always"
+	alias l="eza -lah"
+	alias l1="eza -1"
+	alias lg="eza -lah --git"
+else
+	alias l="ls -lah"
+	alias l1="ls -1"
+	alias lt='ls -laht'
+	alias ltr='ls -lahtr'
+fi
 
 alias cd..="cd .."
 alias ..="cd .."
