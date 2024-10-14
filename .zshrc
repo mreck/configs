@@ -26,14 +26,6 @@ bindkey "^[[F" end-of-line
 bindkey "^P" history-search-backward
 bindkey "^N" history-search-forward
 
-if [ which -s fzf ]; then
-    source <(fzf --zsh)
-fi
-
-if [ which -s zoxide ]; then
-    eval "$(zoxide init zsh)"
-fi
-
 if [ -f ~/.fzf.zsh ]; then
 	source ~/.fzf.zsh
 elif [ -x "$(which fzf)" ]; then
@@ -107,3 +99,5 @@ alias grom="git rebase origin/master --autostash --autosquash"
 alias gromi="grom -i"
 
 alias gbpurge='git branch --merged | grep -Ev "(\*|master|develop|staging)" | xargs -n 1 git branch -d'
+
+[ -f "$HOME/.zshrc.local" ] && source "$HOME/.zshrc.local"
