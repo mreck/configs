@@ -54,25 +54,52 @@ setup_macos() {
 
 	log_section "Updating Homebrew packages"
 
-	brew update
-	brew upgrade
+	brew update && brew upgrade
 
 	for pkg in "${brew_pkgs[@]}"; do
 		brew_install $pkg
 	done
 }
 
+setup_linux() {
+	log_section "Setting up Linux"
+	apt_pkgs=(        \
+		curl          \
+		ffmpeg        \
+		git           \
+		htop          \
+		imagemagick   \
+		jq            \
+		mpv           \
+		sqlite        \
+		tmux          \
+		tree          \
+		vlc           \
+		wget          \
+	)
+
+	log_section "Updating APT packages"
+
+	sudo apt update && sudo apt upgrade -y
+	sudo apt install -y "${apt_pkgs[@]}"
+	sudo apt autoremove -y
+}
+
 setup_configs() {
 	log_section "Updating configs"
 
-	log_section "Updating ZSH config"
-	if [ ! -f "$HOME/.zshrc" ] || yes_or_no "override ZSH config? ($HOME/.zshrc)"; then
-		wget -O "$HOME/.zshrc" --no-verbose https://reck.cloud/c/.zshrc
-		log_update "ZSH config updated"
-	else
-		log_update "skipped"
+	if [ -x "$(which zsh)" ]; then
+		log_section "Updating ZSH config"
+
+		if [ ! -f "$HOME/.zshrc" ] || yes_or_no "override ZSH config? ($HOME/.zshrc)"; then
+			wget -O "$HOME/.zshrc" --no-verbose https://raw.githubusercontent.com/mreck/configs/refs/heads/master/.zshrc
+			log_update "ZSH config updated"
+		else
+			log_update "skipped"
+		fi
 	fi
 }
 
 [ "$(uname)" = "Darwin" ] && setup_macos
+[ "$(uname)" = "Linux" ] && setup_linux
 setup_configs
