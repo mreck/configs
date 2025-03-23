@@ -26,6 +26,21 @@ bindkey "^[[F" end-of-line
 bindkey "^P" history-search-backward
 bindkey "^N" history-search-forward
 
+prepend_path_if_exists() {
+	if [ -d "$1" ]; then
+		export PATH="$1:$PATH"
+	fi
+}
+
+prepend_path_if_exists "$HOME/bin"
+prepend_path_if_exists "$HOME/.bin"
+prepend_path_if_exists "$HOME/.local/bin"
+prepend_path_if_exists "$HOME/go/bin"
+
+if [ -x "$(which ssh-agent)" ];then
+	eval "$(ssh-agent)" 1>/dev/null
+fi
+
 if [ -f ~/.fzf.zsh ]; then
 	source ~/.fzf.zsh
 elif [ -x "$(which fzf)" ]; then
@@ -40,14 +55,14 @@ if [ "$(uname)" = "Darwin" ]; then
     alias code="open -a 'Visual Studio Code'"
 fi
 
-alias ls="ls --color=auto --group-directories-first"
-
 if [ -x "$(which eza)" ];then
 	alias eza="eza --group-directories-first --icons=always"
+	alias ls="eza"
 	alias l="eza -lah"
 	alias l1="eza -1"
 	alias lg="eza -lah --git"
 else
+	alias ls="ls --color=auto --group-directories-first"
 	alias l="ls -lah"
 	alias l1="ls -1"
 	alias lt='ls -laht'
@@ -87,6 +102,7 @@ alias gla="git log --stat --patch"
 alias glom="git log origin/master.."
 alias glomp="git log --patch origin/master.."
 alias gloms="git log --stat origin/master.."
+alias gle="git log --pretty=email"
 
 alias gfa="git fetch --all --prune"
 
