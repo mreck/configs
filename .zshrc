@@ -75,8 +75,6 @@ alias ...="cd ../.."
 alias ....="cd ../../.."
 alias .....="cd ../../../.."
 
-alias t='tmux has && tmux attach || tmux new'
-
 alias g="git"
 alias gs="git status"
 
@@ -115,5 +113,23 @@ alias grom="git rebase origin/master --autostash --autosquash"
 alias gromi="grom -i"
 
 alias gbpurge='git branch --merged | grep -Ev "(\*|master|develop|staging)" | xargs -n 1 git branch -d'
+
+if [ -x "$(which tmux)" ]; then
+	tmux_create_or_attach() {
+		if [ -z "$TMUX_DIRS" ]; then
+			echo "ERROR: TMUX_DIRS is not set"
+			return 1
+		fi
+		DIR="$(echo $TMUX_DIRS | tr ':' '\n' | xargs -I{} find {} -depth 1 -type d | sort | fzf)"
+		NAME="$(echo "$DIR" | sed "s|^$HOME|H|" | tr "/" ".")"
+		if [ tmux has-session -t "$NAME" ]; then
+			tmux attach-session -t "$NAME"
+		else
+			tmux new-session -c "$DIR" -t "$NAME"
+		fi
+	}
+
+	alias t=tmux_create_or_attach
+fi
 
 [ -f "$HOME/.zshrc.local" ] && source "$HOME/.zshrc.local"
