@@ -12,7 +12,7 @@ setopt AUTO_CD
 setopt NO_CASE_GLOB
 setopt EXTENDED_HISTORY
 
-export SAVEHIST=100000
+export SAVEHIST=1000000
 export HISTFILE=~/.zsh_history
 
 export EDITOR=vim
@@ -37,6 +37,7 @@ prepend_path_if_exists "$HOME/.bin"
 prepend_path_if_exists "$HOME/.local/bin"
 prepend_path_if_exists "$HOME/go/bin"
 prepend_path_if_exists "/usr/local/go/bin"
+prepend_path_if_exists "/opt/homebrew/bin"
 prepend_path_if_exists "/opt/nvim-linux-x86_64/bin"
 
 if [ -x "$(which ssh-agent)" ];then

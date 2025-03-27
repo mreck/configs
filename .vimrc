@@ -150,3 +150,6 @@ map <leader>tn :set number!<CR>:set relativenumber!<CR>
 map <leader>tg :call ToggleGermanIMaps()<CR>
 
 map <leader>h :call ToggleHeaderCodeFile()<CR>
+
+nnoremap <C-s> <ESC>:w<CR>
+inoremap <C-s> <ESC>:w<CR>
