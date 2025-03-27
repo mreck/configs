@@ -36,6 +36,8 @@ prepend_path_if_exists "$HOME/bin"
 prepend_path_if_exists "$HOME/.bin"
 prepend_path_if_exists "$HOME/.local/bin"
 prepend_path_if_exists "$HOME/go/bin"
+prepend_path_if_exists "/usr/local/go/bin"
+prepend_path_if_exists "/opt/nvim-linux-x86_64/bin"
 
 if [ -x "$(which ssh-agent)" ];then
 	eval "$(ssh-agent)" 1>/dev/null
@@ -120,7 +122,11 @@ if [ -x "$(which tmux)" ]; then
 			echo "ERROR: TMUX_DIRS is not set"
 			return 1
 		fi
-		DIR="$(echo $TMUX_DIRS | tr ':' '\n' | xargs -I{} find {} -depth 1 -type d | sort | fzf)"
+		DIR="$(echo $TMUX_DIRS | tr ':' '\n' | xargs -I{} find {} -mindepth 1 -maxdepth 1 -type d | sort | fzf)"
+		if [ -z "$DIR" ]; then
+			echo "ERROR: no dir selected"
+			return 1
+		fi
 		NAME="$(echo "$DIR" | sed "s|^$HOME|H|" | tr "/" ".")"
 		if [ tmux has-session -t "$NAME" ]; then
 			tmux attach-session -t "$NAME"
