@@ -24,7 +24,16 @@ create_symlink_if_executable() {
 	fi
 }
 
+touch_if_not_exists() {
+	if [ ! -f "$1" ]; then
+		touch "$1"
+	fi
+}
+
 create_symlink_if_executable "tmux" ".tmux.conf" "$HOME/.tmux.conf"
 create_symlink_if_executable "vim"  ".vimrc"     "$HOME/.vimrc"
 create_symlink_if_executable "zsh"  ".zshrc"     "$HOME/.zshrc"
+create_symlink_if_executable "git"  ".gitconfig" "$HOME/.gitconfig"
 
+touch_if_not_exists "$HOME/.gitconfig.local"
+touch_if_not_exists "$HOME/.zshrc.local"
