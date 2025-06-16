@@ -139,6 +139,17 @@ if [ -x "$(which tmux)" ]; then
 	alias t=tmux_create_or_attach
 fi
 
+upall() {
+	if [ "$(uname)" = 'Linux' ] && [ ! -z "$(which apt)" ]; then
+		echo "[*] Running apt update..."
+		sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y
+	fi
+	if [ "$(uname)" = 'Darwin' ] && [ ! -z "$(which brew)" ]; then
+		echo "[*] Running brew update..."
+		brew update && brew upgrade
+	fi
+}
+
 [ -f "$HOME/.zshrc.local" ] && source "$HOME/.zshrc.local"
 
 if [ ! -z "$VIM_NOTES" ]; then
