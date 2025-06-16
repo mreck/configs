@@ -140,3 +140,12 @@ if [ -x "$(which tmux)" ]; then
 fi
 
 [ -f "$HOME/.zshrc.local" ] && source "$HOME/.zshrc.local"
+
+if [ ! -z "$VIM_NOTES" ]; then
+	mn() {
+		echo "$VIM_NOTES/meetings/$(date +%Y-%m-%d).md" | xargs -o $EDITOR
+	}
+	todo() {
+		grep -rn '\- \[ \]' "$VIM_NOTES" | fzf | awk -F':' '{ print "+" $2 " " $1 }' | xargs -o $EDITOR
+	}
+fi
