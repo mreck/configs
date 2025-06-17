@@ -5,6 +5,7 @@ set -e
 create_symlink() {
 	SRC="$(realpath "$1")"
 	DST="$2"
+	mkdir -p "$(dirname "$DST")"
 	if [ -e "$DST" ]; then
 		if [ -L "$DST" ]; then
 			printf "[*] deleting old config link: "
@@ -34,6 +35,8 @@ create_symlink_if_executable "tmux" ".tmux.conf" "$HOME/.tmux.conf"
 create_symlink_if_executable "vim"  ".vimrc"     "$HOME/.vimrc"
 create_symlink_if_executable "zsh"  ".zshrc"     "$HOME/.zshrc"
 create_symlink_if_executable "git"  ".gitconfig" "$HOME/.gitconfig"
+
+create_symlink_if_executable "vim" "bin/notes" "$HOME/.local/bin/notes"
 
 touch_if_not_exists "$HOME/.gitconfig.local"
 touch_if_not_exists "$HOME/.zshrc.local"

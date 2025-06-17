@@ -153,15 +153,5 @@ upall() {
 [ -f "$HOME/.zshrc.local" ] && source "$HOME/.zshrc.local"
 
 if [ ! -z "$VIM_NOTES" ]; then
-	export NOTES_EDITOR="vim --cmd 'cd $VIM_NOTES'"
-	mn() {
-		echo "$VIM_NOTES/meetings/$(date +%Y-%m-%d).md" \
-			| xargs -o -I {} sh -c "$NOTES_EDITOR {}"
-	}
-	todo() {
-		grep -rn '\- \[ \]' "$VIM_NOTES" \
-			| fzf \
-			| awk -F':' '{ print "+" $2 " " $1 }' \
-			| xargs -o -I {} sh -c "$NOTES_EDITOR {}"
-	}
+	alias n="notes"
 fi
