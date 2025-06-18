@@ -41,6 +41,7 @@ vim.opt.showmode = true
 vim.opt.termguicolors = true
 vim.opt.showcmd = true
 vim.opt.hidden = true
+vim.opt.wrap = false
 
 -- Search
 vim.opt.incsearch = true
