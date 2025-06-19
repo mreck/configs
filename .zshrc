@@ -16,6 +16,7 @@ export SAVEHIST=1000000
 export HISTFILE=~/.zsh_history
 
 export EDITOR=vim
+[ -x "$(which nvim)" ] && export EDITOR=nvim
 
 PROMPT="%B%F{green}%n%f %F{magenta}@%f %F{white}%m%f%b "
 PROMPT+="%B%F{magenta}:%f %{$fg[cyan]%}%~%b "

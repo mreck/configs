@@ -4,7 +4,7 @@ if [ -z "$VIM_NOTES" ]; then
 	export VIM_NOTES="$HOME/notes/vim"
 fi
 
-export NOTES_EDITOR="vim --cmd 'cd $VIM_NOTES'"
+export NOTES_EDITOR="$EDITOR --cmd 'cd $VIM_NOTES'"
 
 edit_meeting_notes() {
 	echo "$VIM_NOTES/meetings/$(date +%Y-%m-%d).md" \
