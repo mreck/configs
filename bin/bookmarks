@@ -4,13 +4,23 @@ if [ -z "$BM_FILE" ]; then
 	export BM_FILE="$HOME/.bookmarks"
 fi
 
-SELECTED_DIR=$(cat "$BM_FILE"          \
+FZF_QUERY=''
+if [ ! -z "$1" ]; then
+        FZF_QUERY="--query=$1"
+fi
+
+SELECTED_DIR=$(                        \
+          cat "$BM_FILE"               \
         | sed                          \
                 -e 's/^[[:blank:]]*//' \
                 -e 's/[[:blank:]]*$//' \
                 -e '/^[[:space:]]*$/d' \
                 -e '/^#.*$/d'          \
-        | fzf)
+        | fzf                          \
+                $FZF_QUERY             \
+                --select-1             \
+                --scheme=path          \
+        )
 
 if [ -z "$SELECTED_DIR" ]; then
         exit 1
