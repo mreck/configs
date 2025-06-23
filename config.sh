@@ -37,7 +37,8 @@ create_symlink_if_executable "zsh"  ".zshrc"     "$HOME/.zshrc"
 create_symlink_if_executable "git"  ".gitconfig" "$HOME/.gitconfig"
 create_symlink_if_executable "nvim" "init.lua"   "$HOME/.config/nvim/init.lua"
 
-create_symlink_if_executable "vim" "bin/notes" "$HOME/.local/bin/notes"
+create_symlink_if_executable "vim" "bin/bookmarks" "$HOME/.local/bin/bookmarks"
+create_symlink_if_executable "vim" "bin/notes"     "$HOME/.local/bin/notes"
 
 touch_if_not_exists "$HOME/.gitconfig.local"
 touch_if_not_exists "$HOME/.zshrc.local"

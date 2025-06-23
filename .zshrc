@@ -73,6 +73,9 @@ else
 	alias ltr='ls -lahtr'
 fi
 
+alias e="$EDITOR"
+alias b="source bookmarks"
+
 alias cd..="cd .."
 alias ..="cd .."
 alias ...="cd ../.."

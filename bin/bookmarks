@@ -1,0 +1,20 @@
+#!/bin/sh
+
+if [ -z "$BM_FILE" ]; then
+	export BM_FILE="$HOME/.bookmarks"
+fi
+
+SELECTED_DIR=$(cat "$BM_FILE"          \
+        | sed                          \
+                -e 's/^[[:blank:]]*//' \
+                -e 's/[[:blank:]]*$//' \
+                -e '/^[[:space:]]*$/d' \
+                -e '/^#.*$/d'          \
+        | fzf)
+
+if [ -z "$SELECTED_DIR" ]; then
+        exit 1
+fi
+
+cd "$SELECTED_DIR"
+
