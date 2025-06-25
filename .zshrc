@@ -41,23 +41,11 @@ prepend_path_if_exists "/usr/local/go/bin"
 prepend_path_if_exists "/opt/homebrew/bin"
 prepend_path_if_exists "/opt/nvim-linux-x86_64/bin"
 
-if [ -x "$(which ssh-agent)" ];then
-	eval "$(ssh-agent)" 1>/dev/null
-fi
-
-if [ -f ~/.fzf.zsh ]; then
-	source ~/.fzf.zsh
-elif [ -x "$(which fzf)" ]; then
-	source <(fzf --zsh)
-fi
-
-if [ -x "$(which zoxide)" ]; then
-	eval "$(zoxide init zsh)"
-fi
-
-if [ "$(uname)" = "Darwin" ]; then
-    alias code="open -a 'Visual Studio Code'"
-fi
+[ -x "$(which ssh-agent)" ] && eval "$(ssh-agent)" 1>/dev/null
+[ -x "$(which zoxide)" ] && eval "$(zoxide init zsh)"
+[ -f "$HOME/.fzf.zsh" ] && source "$HOME/.fzf.zsh" || [ -x "$(which fzf)" ] && source <(fzf --zsh)
+[ -f "$HOME/.cargo/env" ] && source "$HOME/.cargo/env"
+[ "$(uname)" = "Darwin" ] && alias code="open -a 'Visual Studio Code'"
 
 if [ -x "$(which eza)" ];then
 	alias eza="eza --group-directories-first --icons=always"
