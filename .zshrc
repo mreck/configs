@@ -28,9 +28,7 @@ bindkey "^P" history-search-backward
 bindkey "^N" history-search-forward
 
 prepend_path_if_exists() {
-	if [ -d "$1" ]; then
-		export PATH="$1:$PATH"
-	fi
+	[ -d "$1" ] && export PATH="$1:$PATH"
 }
 
 prepend_path_if_exists "$HOME/bin"
@@ -47,12 +45,14 @@ prepend_path_if_exists "/opt/nvim-linux-x86_64/bin"
 [ -f "$HOME/.cargo/env" ] && source "$HOME/.cargo/env"
 [ "$(uname)" = "Darwin" ] && alias code="open -a 'Visual Studio Code'"
 
-if [ -x "$(which eza)" ];then
-	alias eza="eza --group-directories-first --icons=always"
-	alias ls="eza"
-	alias l="eza -lah"
-	alias l1="eza -1"
-	alias lg="eza -lah --git"
+if [ -x "$(which eza)" ]; then
+	D="--group-directories-first"
+	I="--icons=always"
+	alias ls="eza $D $I"
+	alias l="eza $D $I -lah"
+	alias l1="eza $D $I -1"
+	alias lg="eza $D $I -lah --git"
+	alias lt="eza $I --time=modified -lah"
 else
 	alias ls="ls --color=auto --group-directories-first"
 	alias l="ls -lah"
@@ -143,7 +143,4 @@ upall() {
 }
 
 [ -f "$HOME/.zshrc.local" ] && source "$HOME/.zshrc.local"
-
-if [ ! -z "$VIM_NOTES" ]; then
-	alias n="notes"
-fi
+[ ! -z "$VIM_NOTES" ] && alias n="notes"
