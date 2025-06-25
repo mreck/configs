@@ -7,5 +7,6 @@ check_exec() {
 }
 
 check_exec fzf
+check_exec mpv
 check_exec nvim
 check_exec tmux
