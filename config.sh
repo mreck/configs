@@ -39,9 +39,9 @@ create_symlink_if_executable "tmux" ".tmux.conf"     "$HOME/.tmux.conf"
 create_symlink_if_executable "vim"  ".vimrc"         "$HOME/.vimrc"
 create_symlink_if_executable "zsh"  ".zshrc"         "$HOME/.zshrc"
 
-create_symlink_if_executable "vim" "bin/bookmarks" "$HOME/.local/bin/bookmarks"
-create_symlink_if_executable "vim" "bin/jmp2dir"   "$HOME/.local/bin/jmp2dir"
-create_symlink_if_executable "vim" "bin/notes"     "$HOME/.local/bin/notes"
+create_symlink_if_executable "vim" "bin/jmp2dir"    "$HOME/.local/bin/jmp2dir"
+create_symlink_if_executable "vim" "bin/notes"      "$HOME/.local/bin/notes"
+create_symlink_if_executable "vim" "bin/fuzzy-edit" "$HOME/.local/bin/fuzzy-edit"
 
 touch_if_not_exists "$HOME/.gitconfig.local"
 touch_if_not_exists "$HOME/.zshrc.local"

@@ -65,8 +65,7 @@ else
 	alias ltr='ls -lahtr'
 fi
 
-alias e="$EDITOR"
-alias e.="$EDITOR ."
+alias e="fuzzy-edit"
 alias j="source jmp2dir"
 
 alias cd..="cd .."
