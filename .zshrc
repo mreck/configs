@@ -12,7 +12,7 @@ setopt AUTO_CD
 setopt NO_CASE_GLOB
 setopt EXTENDED_HISTORY
 
-export SAVEHIST=1000000
+export SAVEHIST=100000
 export HISTFILE=~/.zsh_history
 
 export EDITOR=vim
@@ -49,12 +49,16 @@ if [ -x "$(which eza)" ]; then
 	D="--group-directories-first"
 	I="--icons=always"
 	alias ls="eza $D $I"
+	alias ll="eza $D $I -lh"
+	alias la="eza $D $I -a"
 	alias l="eza $D $I -lah"
 	alias l1="eza $D $I -1"
 	alias lg="eza $D $I -lah --git"
 	alias lt="eza $I --time=modified -lah"
 else
 	alias ls="ls --color=auto --group-directories-first"
+	alias ll='ls -lh'
+	alias la='ls -a'
 	alias l="ls -lah"
 	alias l1="ls -1"
 	alias lt='ls -laht'
