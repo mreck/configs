@@ -66,7 +66,8 @@ else
 fi
 
 alias e="$EDITOR"
-alias b="source bookmarks"
+alias e.="$EDITOR ."
+alias j="source jmp2dir"
 
 alias cd..="cd .."
 alias ..="cd .."
