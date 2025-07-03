@@ -31,13 +31,14 @@ touch_if_not_exists() {
 	fi
 }
 
-create_symlink_if_executable "git"  ".gitconfig"     "$HOME/.gitconfig"
-create_symlink_if_executable "mpv"  "mpv/input.conf" "$HOME/.config/mpv/input.conf"
-create_symlink_if_executable "mpv"  "mpv/mpv.conf"   "$HOME/.config/mpv/mpv.conf"
-create_symlink_if_executable "nvim" "init.lua"       "$HOME/.config/nvim/init.lua"
-create_symlink_if_executable "tmux" ".tmux.conf"     "$HOME/.tmux.conf"
-create_symlink_if_executable "vim"  ".vimrc"         "$HOME/.vimrc"
-create_symlink_if_executable "zsh"  ".zshrc"         "$HOME/.zshrc"
+create_symlink_if_executable "ghostty" "ghostty/config" "$HOME/.config/ghostty/config"
+create_symlink_if_executable "git"     ".gitconfig"     "$HOME/.gitconfig"
+create_symlink_if_executable "mpv"     "mpv/input.conf" "$HOME/.config/mpv/input.conf"
+create_symlink_if_executable "mpv"     "mpv/mpv.conf"   "$HOME/.config/mpv/mpv.conf"
+create_symlink_if_executable "nvim"    "init.lua"       "$HOME/.config/nvim/init.lua"
+create_symlink_if_executable "tmux"    ".tmux.conf"     "$HOME/.tmux.conf"
+create_symlink_if_executable "vim"     ".vimrc"         "$HOME/.vimrc"
+create_symlink_if_executable "zsh"     ".zshrc"         "$HOME/.zshrc"
 
 create_symlink_if_executable "vim" "bin/jmp2dir"    "$HOME/.local/bin/jmp2dir"
 create_symlink_if_executable "vim" "bin/notes"      "$HOME/.local/bin/notes"
