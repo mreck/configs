@@ -31,6 +31,7 @@ touch_if_not_exists() {
 	fi
 }
 
+create_symlink_if_executable "emacs"   ".emacs"         "$HOME/.emacs"
 create_symlink_if_executable "ghostty" "ghostty/config" "$HOME/.config/ghostty/config"
 create_symlink_if_executable "git"     ".gitconfig"     "$HOME/.gitconfig"
 create_symlink_if_executable "mpv"     "mpv/input.conf" "$HOME/.config/mpv/input.conf"
