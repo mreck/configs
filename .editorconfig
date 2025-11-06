@@ -11,3 +11,6 @@ indent_size = 2
 
 [{.emacs}]
 indent_size = 2
+
+[*{.sh,inc}]
+indent_style = tabs

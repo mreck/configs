@@ -1,4 +1,4 @@
-#!/usr/bin/sh
+#!/bin/sh
 
 yes_or_no() {
     while true; do
