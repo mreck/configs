@@ -8,16 +8,18 @@
 	files="$(find ./ -type f -printf '%P\n')"
 
 	for f in $files; do
-		dstf="$HOME/$f"
-		dstd="$(dirname "$dstf")"
-		srcf="$wd/$f"
+		dst_f="$HOME/$f"
+		dst_d="$(dirname "$dst_f")"
+		src_f="$wd/$f"
 
-		mkdir -p "$dstd"
+		mkdir -p "$dst_d"
 
-		if [ -L "$dstf" ]; then
-			ln -svf "$srcf" "$dstf"
-		elif [ ! -e "$dstf" ]; then
-			ln -sv "$srcf" "$dstf"
+		if [ -L "$dst_f" ]; then
+			ln -svf "$src_f" "$dst_f"
+		elif [ ! -e "$dst_f" ]; then
+			ln -sv "$src_f" "$dst_f"
+		else
+			echo "WARNING: could not link $f"
 		fi
 	done
 )

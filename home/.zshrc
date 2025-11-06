@@ -13,7 +13,7 @@ setopt NO_CASE_GLOB
 setopt EXTENDED_HISTORY
 
 export SAVEHIST=100000
-export HISTFILE=~/.zsh_history
+export HISTFILE="$HOME/.zsh_history"
 
 export EDITOR=vim
 [ -x "$(which nvim)" ] && export EDITOR=nvim
@@ -65,7 +65,7 @@ else
 	alias ltr='ls -lahtr'
 fi
 
-source ~/.local/include/alias.inc
+source "$HOME/.local/include/alias.inc"
 
 [ -f "$HOME/.zshrc.local" ] && source "$HOME/.zshrc.local"
 [ ! -z "$VIM_NOTES" ] && alias n="notes"
