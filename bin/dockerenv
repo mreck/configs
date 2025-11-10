@@ -1,0 +1,11 @@
+#!/bin/sh
+
+set -e
+dockerfiles_dir="$HOME/.dotfiles/dockerfiles"
+image_name="$(find "$dockerfiles_dir" -maxdepth 1 -mindepth 1 -type d -printf "%f\n" | fzf)"
+export image_name
+[ -z "$image_name" ] && exit 1
+echo "[*] running: $image_name"
+export image_dir="$HOME/.dotfiles/dockerfiles/$image_name"
+(cd "$image_dir"; docker build -t "$image_name" .)
+/bin/sh "$image_dir/run.sh"
