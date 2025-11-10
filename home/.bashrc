@@ -88,5 +88,9 @@ fi
 
 export EDITOR=vim
 
-source ~/.local/include/alias.inc
+source_file_if_exists() {
+	[ -f "$1" ] && source "$1"
+}
 
+source_file_if_exists "$HOME/.dotfiles/include/alias.inc"
+source_file_if_exists "$HOME/.bashrc.local"

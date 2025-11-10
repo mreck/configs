@@ -1,8 +1,16 @@
 #!/bin/sh
-(
-	set -e
 
-	wd="$(dirname "$(realpath "$0")")/home"
+set -e
+
+config_dir="$(dirname "$(realpath "$0")")"
+
+if [ "$config_dir" != "$HOME/.dotfiles" ]; then
+	echo "ERROR: dotfiles root dir needs to be '$HOME/.dotfiles'"
+	exit 1
+fi
+
+(
+	wd="$config_dir/home"
 	cd "$wd"
 
 	files="$(find ./ -type f -printf '%P\n')"

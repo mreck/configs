@@ -35,6 +35,7 @@ prepend_path_if_exists "$HOME/bin"
 prepend_path_if_exists "$HOME/.bin"
 prepend_path_if_exists "$HOME/.local/bin"
 prepend_path_if_exists "$HOME/go/bin"
+prepend_path_if_exists "$HOME/.dotfiles/bin"
 prepend_path_if_exists "/usr/local/go/bin"
 prepend_path_if_exists "/opt/homebrew/bin"
 prepend_path_if_exists "/opt/nvim-linux-x86_64/bin"
@@ -65,7 +66,11 @@ else
 	alias ltr='ls -lahtr'
 fi
 
-source "$HOME/.local/include/alias.inc"
+source_file_if_exists() {
+	[ -f "$1" ] && source "$1"
+}
 
-[ -f "$HOME/.zshrc.local" ] && source "$HOME/.zshrc.local"
+source_file_if_exists "$HOME/.dotfiles/include/alias.inc"
+source_file_if_exists "$HOME/.zshrc.local"
+
 [ ! -z "$VIM_NOTES" ] && alias n="notes"
